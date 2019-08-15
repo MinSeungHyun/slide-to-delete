@@ -2,6 +2,7 @@ package com.seunghyun.dragtodelete
 
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -9,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private var firstX = 0f
     private var firstViewX = 0f
+    private var velocity = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +32,20 @@ class MainActivity : AppCompatActivity() {
 
                     if (viewX > parentWidth) viewX = parentWidth
                     else if (viewX < 0) viewX = 0f
+
+                    velocity += viewX - text.x
+                    velocity /= 2
                     text.x = viewX
                     onViewMove()
                 }
                 MotionEvent.ACTION_UP -> {
-                    if (text.x > parentWidth * AUTO_SLIDE_RATIO) {
-                        slideText()
-                    } else if (text.x < parentWidth * AUTO_SLIDE_RATIO) {
-                        resetText()
+                    Log.d("testing", velocity.toString())
+                    val autoSlideVelocity = AUTO_SLIDE_VELOCITY_RATIO * parentWidth
+                    when {
+                        velocity > autoSlideVelocity -> slideText()
+                        velocity < autoSlideVelocity * -1 -> resetText()
+                        text.x > parentWidth * AUTO_SLIDE_RATIO -> slideText()
+                        text.x < parentWidth * AUTO_SLIDE_RATIO -> resetText()
                     }
                 }
             }
@@ -82,5 +90,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val AUTO_SLIDE_RATIO = 0.5
+        private const val AUTO_SLIDE_VELOCITY_RATIO = 0.02
     }
 }
