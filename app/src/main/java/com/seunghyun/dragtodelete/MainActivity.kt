@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 MotionEvent.ACTION_UP -> {
                     if (text.x > parentWidth * AUTO_SLIDE_RATIO) {
-                        text.x = parentWidth
+                        slideText()
                     } else if (text.x < parentWidth * AUTO_SLIDE_RATIO) {
                         resetText()
                     }
@@ -45,6 +45,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetText() {
         val animator = ValueAnimator.ofFloat(text.x, 0f).apply {
+            duration = 200
+        }
+        animator.addUpdateListener {
+            text.x = it.animatedValue.toString().toFloat()
+        }
+        animator.start()
+    }
+
+    private fun slideText() {
+        val animator = ValueAnimator.ofFloat(text.x, container.width.toFloat()).apply {
             duration = 200
         }
         animator.addUpdateListener {
