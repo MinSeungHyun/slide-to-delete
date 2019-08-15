@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:gravity="center"
     tools:ignore="HardcodedText">
 
-    <RelativeLayout
-        android:id="@+id/container"
+    <TextView
+        android:id="@+id/deleteTV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text"
+        android:layout_alignParentTop="true"
+        android:background="#FF2E2E"
+        android:gravity="center"
+        android:text="삭제"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/deleteTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/text"
-            android:layout_alignParentTop="true"
-            android:background="#FF2E2E"
-            android:gravity="center"
-            android:text="삭제"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/undoTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/text"
+        android:layout_alignBottom="@id/text"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="되돌리기"
+        android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/undoTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/text"
-            android:layout_alignBottom="@id/text"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:text="되돌리기"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="드래그 해서 삭제"
-            android:textColor="@android:color/black" />
-    </RelativeLayout>
-</LinearLayout>
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="드래그 해서 삭제"
+        android:textColor="@android:color/black" />
+</RelativeLayout>
