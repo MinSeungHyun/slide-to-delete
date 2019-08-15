@@ -32,7 +32,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="<-\n되돌리기"
+            android:text="되돌리기"
             android:textColor="@android:color/white" />
 
         <TextView
