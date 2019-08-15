@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val parentWidth = container.width.toFloat()
 
         deleteTV.setOnTouchListener { _, event ->
             val x = event.x
+            val parentWidth = container.width.toFloat()
 
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
