@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                     if (viewX > parentWidth) viewX = parentWidth
                     else if (viewX < 0) viewX = 0f
                     text.x = viewX
+                    onViewMove()
                 }
                 MotionEvent.ACTION_UP -> {
                     if (text.x > parentWidth * AUTO_SLIDE_RATIO) {
@@ -43,12 +44,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun onViewMove() {
+        val x = text.x
+        val parentWidth = container.width
+
+        if (firstViewX == 0f) {
+            val alpha = 1 - x / (parentWidth / 2)
+            text.alpha = alpha
+        } else {
+            val alpha = 2 - 2 * x / parentWidth
+            text.alpha = alpha
+        }
+    }
+
     private fun resetText() {
         val animator = ValueAnimator.ofFloat(text.x, 0f).apply {
             duration = 200
         }
         animator.addUpdateListener {
             text.x = it.animatedValue.toString().toFloat()
+            onViewMove()
         }
         animator.start()
     }
@@ -59,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
         animator.addUpdateListener {
             text.x = it.animatedValue.toString().toFloat()
+            onViewMove()
         }
         animator.start()
     }
