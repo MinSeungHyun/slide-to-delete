@@ -1,5 +1,6 @@
 package com.seunghyun.dragtodelete
 
+import android.animation.ValueAnimator
 import android.graphics.Point
 import android.os.Bundle
 import android.view.MotionEvent
@@ -38,12 +39,22 @@ class MainActivity : AppCompatActivity() {
                     if (text.x > screenWidth * AUTO_SLIDE_RATIO) {
                         text.x = screenWidth
                     } else if (text.x < screenWidth * AUTO_SLIDE_RATIO) {
-                        text.x = 0f
+                        resetText()
                     }
                 }
             }
             return@setOnTouchListener true
         }
+    }
+
+    private fun resetText() {
+        val animator = ValueAnimator.ofFloat(text.x, 0f).apply {
+            duration = 200
+        }
+        animator.addUpdateListener {
+            text.x = it.animatedValue.toString().toFloat()
+        }
+        animator.start()
     }
 
     companion object {
