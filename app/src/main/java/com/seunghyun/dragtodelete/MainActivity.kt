@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
                     firstViewX = text.x
                 }
                 MotionEvent.ACTION_MOVE -> {
+                    if (firstViewX != 0f && firstViewX != parentWidth) return@setOnTouchListener true
                     val distance = x - firstX
                     var viewX = firstViewX + distance
 
