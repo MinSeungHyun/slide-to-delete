@@ -1,5 +1,6 @@
 package com.seunghyun.dragtodelete
 
+import android.graphics.Point
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val size = Point()
+        windowManager.defaultDisplay.getSize(size)
+        val screenWidth = size.x
+
         deleteTV.setOnTouchListener { _, event ->
             val x = event.x
 
@@ -23,7 +28,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 MotionEvent.ACTION_MOVE -> {
                     val distance = x - firstX
-                    text.x = firstViewX + distance
+                    var viewX = firstViewX + distance
+
+                    if (viewX > screenWidth) viewX = screenWidth.toFloat()
+                    else if (viewX < 0) viewX = 0f
+                    text.x = viewX
                 }
             }
             return@setOnTouchListener true
