@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         val size = Point()
         windowManager.defaultDisplay.getSize(size)
-        val screenWidth = size.x
+        val screenWidth = size.x.toFloat()
 
         deleteTV.setOnTouchListener { _, event ->
             val x = event.x
@@ -30,12 +30,23 @@ class MainActivity : AppCompatActivity() {
                     val distance = x - firstX
                     var viewX = firstViewX + distance
 
-                    if (viewX > screenWidth) viewX = screenWidth.toFloat()
+                    if (viewX > screenWidth) viewX = screenWidth
                     else if (viewX < 0) viewX = 0f
                     text.x = viewX
+                }
+                MotionEvent.ACTION_UP -> {
+                    if (text.x > screenWidth * AUTO_SLIDE_RATIO) {
+                        text.x = screenWidth
+                    } else if (text.x < screenWidth * AUTO_SLIDE_RATIO) {
+                        text.x = 0f
+                    }
                 }
             }
             return@setOnTouchListener true
         }
+    }
+
+    companion object {
+        private const val AUTO_SLIDE_RATIO = 0.5
     }
 }
