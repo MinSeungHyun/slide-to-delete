@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                     val distance = x - firstX
                     var viewX = firstViewX + distance
 
-                    isSlidedToRight = distance > 0 || viewX > 0
+                    isSlidedToRight = (distance > 0 || viewX > 0) && firstViewX >= 0
 
                     if (viewX > parentWidth) viewX = parentWidth
 
@@ -69,9 +69,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onViewMove() {
-        val x = text.x
+        var x = text.x
         val parentWidth = container.width
 
+        if (!isSlidedToRight) x *= -1
         if (firstViewX == 0f) {
             val alpha = 1 - x / (parentWidth / 2)
             text.alpha = alpha
