@@ -10,7 +10,7 @@ import android.view.ViewGroup
 private class SlideToDeleteTouchListener(
     private val container: ViewGroup,
     private val content: View,
-    private val watingTime: Long,
+    private val waitingTime: Long,
     private val doOnDelete: (container: ViewGroup) -> Unit
 ) : View.OnTouchListener {
 
@@ -78,7 +78,7 @@ private class SlideToDeleteTouchListener(
         if (x.toInt() == parentWidth || x.toInt() == parentWidth * -1) {
             Handler().postDelayed({
                 doOnDelete.invoke(container)
-            }, watingTime)
+            }, waitingTime)
         }
 
         if (!isSlidedToRight) x *= -1
