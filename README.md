@@ -79,5 +79,5 @@ example
 deletedTV.enableSlideToDelete(container, contentTV, 2000) {
     it.visibility = View.GONE
     }
-'''
+```
 That's it!
