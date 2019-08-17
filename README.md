@@ -64,13 +64,13 @@ dependencies {
 ```kotlin
 deletedTV.enableSlideToDelete(container, contentTV, waitingTime) {
     //Do somthing when deleted
-    }
+}
 ```
 or
 ```kotlin
 val doWhenDeleted = { container: ViewGroup ->
      //Do somthing when deleted
-    }
+}
 deletedTV.enableSlideToDelete(container, contentTV, waitingTime, doWhenDeleted)
 ```
 
@@ -78,6 +78,6 @@ example
 ```kotlin
 deletedTV.enableSlideToDelete(container, contentTV, 2000) {
     it.visibility = View.GONE
-    }
+}
 ```
 That's it!
