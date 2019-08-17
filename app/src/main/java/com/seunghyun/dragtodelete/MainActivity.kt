@@ -11,5 +11,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         deletedTV.setOnTouchListener(SlideToDeleteTouchListener(container, text))
+        deletedTV2.setOnTouchListener(SlideToDeleteTouchListener(container2, text2))
     }
 }

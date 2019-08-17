@@ -1,32 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:ignore="HardcodedText">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/deletedTV"
+    <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/text"
-        android:layout_alignParentTop="true"
-        android:background="#FF2E2E"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="deleted"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        tools:ignore="HardcodedText">
 
-    <TextView
-        android:id="@+id/text"
+        <TextView
+            android:id="@+id/deletedTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/text"
+            android:layout_alignParentTop="true"
+            android:background="#FF2E2E"
+            android:gravity="center"
+            android:text="deleted"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#69BEFF"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Slide to delete"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#69BEFF"
         android:gravity="center"
-        android:padding="16dp"
-        android:text="Slide to delete"
-        android:textColor="@android:color/black" />
-</RelativeLayout>
+        tools:ignore="HardcodedText">
+
+        <TextView
+            android:id="@+id/deletedTV2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/text2"
+            android:layout_alignParentTop="true"
+            android:background="#FF2E89"
+            android:gravity="center"
+            android:text="deleted"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#BBFF8B"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Slide to delete 2"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+</LinearLayout>
