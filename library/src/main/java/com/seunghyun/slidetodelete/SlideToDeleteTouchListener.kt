@@ -2,11 +2,18 @@ package com.seunghyun.slidetodelete
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.os.Handler
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 
-class SlideToDeleteTouchListener(private val container: ViewGroup, private val content: View) : View.OnTouchListener {
+private class SlideToDeleteTouchListener(
+    private val container: ViewGroup,
+    private val content: View,
+    private val watingTime: Long,
+    private val doOnDelete: (container: ViewGroup) -> Unit
+) : View.OnTouchListener {
+
     private var firstX = 0f
     private var firstViewX = 0f
     private var velocity = 0f
@@ -68,6 +75,12 @@ class SlideToDeleteTouchListener(private val container: ViewGroup, private val c
         var x = content.x
         val parentWidth = container.width
 
+        if (x.toInt() == parentWidth || x.toInt() == parentWidth * -1) {
+            Handler().postDelayed({
+                doOnDelete.invoke(container)
+            }, watingTime)
+        }
+
         if (!isSlidedToRight) x *= -1
         val alpha =
             if (firstViewX == 0f) 1 - x / (parentWidth / 2)
@@ -104,6 +117,11 @@ class SlideToDeleteTouchListener(private val container: ViewGroup, private val c
     }
 }
 
-fun View.enableSlideToDelete(container: ViewGroup, content: View) {
-    this.setOnTouchListener(SlideToDeleteTouchListener(container, content))
+fun View.enableSlideToDelete(
+    container: ViewGroup,
+    content: View,
+    waitingTime: Long,
+    doOnDelete: (container: ViewGroup) -> Unit
+) {
+    this.setOnTouchListener(SlideToDeleteTouchListener(container, content, waitingTime, doOnDelete))
 }
