@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:background="#FF2E2E"
         android:gravity="center"
-        android:text="삭제"
+        android:text="deleted"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -27,6 +27,6 @@
         android:background="#69BEFF"
         android:gravity="center"
         android:padding="16dp"
-        android:text="드래그 해서 삭제"
+        android:text="Slide to delete"
         android:textColor="@android:color/black" />
 </RelativeLayout>
