@@ -1,10 +1,25 @@
 # SlideToDelete
+[![](https://jitpack.io/v/MinSeungHyun/SlideToDelete.svg)](https://jitpack.io/#MinSeungHyun/SlideToDelete)<br>
 Not a RecyclerView, Just a View<br>
 
 <img src="gifs/preview.gif" width="250"/>
 
 ## Quick Start
-1. Copy [this file](https://github.com/MinSeungHyun/SlideToDelete/blob/master/app/src/main/java/com/seunghyun/dragtodelete/SlideToDeleteTouchListener.kt) to your project.
+1. Add it in your `build.gradle (app)` at the end of project
+```xml
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+
+...
+
+dependencies {
+        implementation 'com.github.MinSeungHyun:SlideToDelete:Tag'
+}
+```
 2. In your xml
 ```xml
 <RelativeLayout
@@ -40,7 +55,7 @@ Not a RecyclerView, Just a View<br>
 </RelativeLayout>
 ```
 
-3. kotlin
+3. code
 ```kotlin
 deletedTV.setOnTouchListener(SlideToDeleteTouchListener(container, text))
 ```
