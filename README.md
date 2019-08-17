@@ -1,9 +1,9 @@
 # SlideToDelete
-![GitHub release](https://img.shields.io/github/release/MinSeungHyun/SlideToDelete?color=red)
-![GitHub Release Date](https://img.shields.io/github/release-date/MinSeungHyun/SlideToDelete?color=orange)
-![GitHub last commit](https://img.shields.io/github/last-commit/MinSeungHyun/SlideToDelete?color=yellow)
+![](https://img.shields.io/github/release/MinSeungHyun/SlideToDelete?color=red)
+![](https://img.shields.io/github/release-date/MinSeungHyun/SlideToDelete?color=orange)
+![](https://img.shields.io/github/last-commit/MinSeungHyun/SlideToDelete?color=yellow)
 [![](https://jitpack.io/v/MinSeungHyun/SlideToDelete.svg)](https://jitpack.io/#MinSeungHyun/SlideToDelete)
-[![GitHub license](https://img.shields.io/github/license/MinSeungHyun/SlideToDelete?color=blue)](https://github.com/MinSeungHyun/SlideToDelete/blob/master/LICENSE)
+[![](https://img.shields.io/github/license/MinSeungHyun/SlideToDelete?color=blue)](https://github.com/MinSeungHyun/SlideToDelete/blob/master/LICENSE)
 <br>
 Not a RecyclerView, Just a View<br>
 
@@ -19,7 +19,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.0'
+	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.1'
 }
 ```
 2. In your xml (Attributes and Views are not important)
