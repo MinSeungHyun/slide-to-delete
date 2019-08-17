@@ -47,19 +47,19 @@ class MainActivity : AppCompatActivity() {
 
                     if (isSlidedToRight || firstViewX == parentWidth) {
                         when {
-                            velocity > autoSlideVelocity -> slideTextToRight()
-                            velocity < autoSlideVelocity * -1 -> resetText()
-                            textX > autoSlideWidth -> slideTextToRight()
-                            textX < autoSlideWidth -> resetText()
+                            velocity > autoSlideVelocity -> autoSlide(FLAG_SLIDE_TO_RIGHT)
+                            velocity < autoSlideVelocity * -1 -> autoSlide(FLAG_RESET)
+                            textX > autoSlideWidth -> autoSlide(FLAG_SLIDE_TO_RIGHT)
+                            textX < autoSlideWidth -> autoSlide(FLAG_RESET)
                         }
                     } else {
                         velocity *= -1
                         textX *= -1
                         when {
-                            velocity > autoSlideVelocity -> slideTextToLeft()
-                            velocity < autoSlideVelocity * -1 -> resetText()
-                            textX > autoSlideWidth -> slideTextToLeft()
-                            textX < autoSlideWidth -> resetText()
+                            velocity > autoSlideVelocity -> autoSlide(FLAG_SLIDE_TO_LEFT)
+                            velocity < autoSlideVelocity * -1 -> autoSlide(FLAG_RESET)
+                            textX > autoSlideWidth -> autoSlide(FLAG_SLIDE_TO_LEFT)
+                            textX < autoSlideWidth -> autoSlide(FLAG_RESET)
                         }
                     }
                 }
@@ -80,30 +80,15 @@ class MainActivity : AppCompatActivity() {
         text.alpha = alpha
     }
 
-    private fun resetText() {
-        val animator = ValueAnimator.ofFloat(text.x, 0f).apply {
-            duration = AUTO_SLIDE_MS
+    private fun autoSlide(flag: Int) {
+        val end = when (flag) {
+            FLAG_RESET -> 0f
+            FLAG_SLIDE_TO_LEFT -> container.width.toFloat() * -1
+            FLAG_SLIDE_TO_RIGHT -> container.width.toFloat()
+            else -> return
         }
-        animator.addUpdateListener {
-            text.x = it.animatedValue.toString().toFloat()
-            onViewMove()
-        }
-        animator.start()
-    }
 
-    private fun slideTextToRight() {
-        val animator = ValueAnimator.ofFloat(text.x, container.width.toFloat()).apply {
-            duration = AUTO_SLIDE_MS
-        }
-        animator.addUpdateListener {
-            text.x = it.animatedValue.toString().toFloat()
-            onViewMove()
-        }
-        animator.start()
-    }
-
-    private fun slideTextToLeft() {
-        val animator = ValueAnimator.ofFloat(text.x, container.width.toFloat() * -1).apply {
+        val animator = ValueAnimator.ofFloat(text.x, end).apply {
             duration = AUTO_SLIDE_MS
         }
         animator.addUpdateListener {
@@ -117,5 +102,8 @@ class MainActivity : AppCompatActivity() {
         private const val AUTO_SLIDE_RATIO = 0.5
         private const val AUTO_SLIDE_VELOCITY_RATIO = 0.02
         private const val AUTO_SLIDE_MS = 200L
+        private const val FLAG_RESET = 0
+        private const val FLAG_SLIDE_TO_RIGHT = 1
+        private const val FLAG_SLIDE_TO_LEFT = 2
     }
 }
