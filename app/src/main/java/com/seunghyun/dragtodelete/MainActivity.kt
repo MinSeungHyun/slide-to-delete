@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetText() {
         val animator = ValueAnimator.ofFloat(text.x, 0f).apply {
-            duration = 200
+            duration = AUTO_SLIDE_MS
         }
         animator.addUpdateListener {
             text.x = it.animatedValue.toString().toFloat()
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun slideTextToRight() {
         val animator = ValueAnimator.ofFloat(text.x, container.width.toFloat()).apply {
-            duration = 200
+            duration = AUTO_SLIDE_MS
         }
         animator.addUpdateListener {
             text.x = it.animatedValue.toString().toFloat()
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun slideTextToLeft() {
         val animator = ValueAnimator.ofFloat(text.x, container.width.toFloat() * -1).apply {
-            duration = 200
+            duration = AUTO_SLIDE_MS
         }
         animator.addUpdateListener {
             text.x = it.animatedValue.toString().toFloat()
@@ -116,5 +116,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val AUTO_SLIDE_RATIO = 0.5
         private const val AUTO_SLIDE_VELOCITY_RATIO = 0.02
+        private const val AUTO_SLIDE_MS = 200L
     }
 }
