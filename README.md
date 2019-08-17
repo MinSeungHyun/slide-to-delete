@@ -1,23 +1,25 @@
 # SlideToDelete
-[![](https://jitpack.io/v/MinSeungHyun/SlideToDelete.svg)](https://jitpack.io/#MinSeungHyun/SlideToDelete)<br>
+![GitHub release](https://img.shields.io/github/release/MinSeungHyun/SlideToDelete?color=red)
+![GitHub Release Date](https://img.shields.io/github/release-date/MinSeungHyun/SlideToDelete?color=orange)
+![GitHub last commit](https://img.shields.io/github/last-commit/MinSeungHyun/SlideToDelete?color=yellow)
+[![](https://jitpack.io/v/MinSeungHyun/SlideToDelete.svg)](https://jitpack.io/#MinSeungHyun/SlideToDelete)
+[![GitHub license](https://img.shields.io/github/license/MinSeungHyun/SlideToDelete?color=blue)](https://github.com/MinSeungHyun/SlideToDelete/blob/master/LICENSE)
+<br>
 Not a RecyclerView, Just a View<br>
 
 <img src="gifs/preview.gif" width="250"/>
 
 ## Quick Start
 1. Add it in your `build.gradle (app)` at the end of project
-```xml
+```gradle
 allprojects {
 	repositories {
-		...
 		maven { url 'https://jitpack.io' }
 	}
 }
 
-...
-
 dependencies {
-        implementation 'com.github.MinSeungHyun:SlideToDelete:Tag'
+	implementation 'com.github.MinSeungHyun:SlideToDelete:Tag'
 }
 ```
 2. In your xml
