@@ -3,6 +3,7 @@ package com.seunghyun.slidetodelete
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ private class SlideToDeleteTouchListener(
     private var firstViewX = 0f
     private var velocity = 0f
     private var isSlidedToRight = false
+    private lateinit var runningThread: WaitingThread
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -76,9 +78,10 @@ private class SlideToDeleteTouchListener(
         val parentWidth = container.width
 
         if (x.toInt() == parentWidth || x.toInt() == parentWidth * -1) {
-            Handler().postDelayed({
-                doOnDelete.invoke(container)
-            }, waitingTime)
+            runningThread = WaitingThread(waitingTime, doOnDelete, container)
+            runningThread.start()
+        } else if (::runningThread.isInitialized && runningThread.isAlive) {
+            runningThread.interrupt()
         }
 
         if (!isSlidedToRight) x *= -1
@@ -105,6 +108,22 @@ private class SlideToDeleteTouchListener(
             onViewMove()
         }
         animator.start()
+    }
+
+    class WaitingThread(
+        private val waitingTime: Long,
+        private val doOnDelete: (container: ViewGroup) -> Unit,
+        private val container: ViewGroup
+    ) : Thread() {
+        override fun run() {
+            try {
+                sleep(waitingTime)
+                Handler(Looper.getMainLooper()).post {
+                    doOnDelete.invoke(container)
+                }
+            } catch (e: InterruptedException) {
+            }
+        }
     }
 
     companion object {
