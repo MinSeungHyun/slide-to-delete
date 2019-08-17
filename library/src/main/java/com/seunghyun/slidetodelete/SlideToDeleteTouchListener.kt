@@ -19,7 +19,7 @@ private class SlideToDeleteTouchListener(
     private var firstViewX = 0f
     private var velocity = 0f
     private var isSlidedToRight = false
-    private lateinit var runningThread: WaitingThread
+    private var runningThread: WaitingThread? = null
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -78,10 +78,11 @@ private class SlideToDeleteTouchListener(
         val parentWidth = container.width
 
         if (x.toInt() == parentWidth || x.toInt() == parentWidth * -1) {
+            if (runningThread != null) runningThread!!.interrupt()
             runningThread = WaitingThread(waitingTime, doOnDelete, container)
-            runningThread.start()
-        } else if (::runningThread.isInitialized && runningThread.isAlive) {
-            runningThread.interrupt()
+            runningThread!!.start()
+        } else if (runningThread?.isAlive == true) {
+            runningThread!!.interrupt()
         }
 
         if (!isSlidedToRight) x *= -1
