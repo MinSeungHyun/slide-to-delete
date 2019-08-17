@@ -8,7 +8,7 @@
     tools:ignore="HardcodedText">
 
     <TextView
-        android:id="@+id/deleteTV"
+        android:id="@+id/deletedTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/text"

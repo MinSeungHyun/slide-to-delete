@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        deleteTV.setOnTouchListener(SlideToDeleteTouchListener(container, text))
+        deletedTV.setOnTouchListener(SlideToDeleteTouchListener(container, text))
     }
 }
