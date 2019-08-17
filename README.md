@@ -10,7 +10,7 @@ Not a RecyclerView, Just a View<br>
 <img src="gifs/preview.gif" width="250"/>
 
 ## Quick Start
-1. Add it in your `build.gradle (app)` at the end of project
+1. Add this in your `build.gradle (app)` at the end of project
 ```gradle
 allprojects {
 	repositories {
@@ -19,7 +19,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.MinSeungHyun:SlideToDelete:Tag'
+	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.0'
 }
 ```
 2. In your xml
