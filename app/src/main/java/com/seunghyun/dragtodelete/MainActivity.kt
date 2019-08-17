@@ -73,13 +73,11 @@ class MainActivity : AppCompatActivity() {
         val parentWidth = container.width
 
         if (!isSlidedToRight) x *= -1
-        if (firstViewX == 0f) {
-            val alpha = 1 - x / (parentWidth / 2)
-            text.alpha = alpha
-        } else {
-            val alpha = 2 - 2 * x / parentWidth
-            text.alpha = alpha
-        }
+        val alpha =
+                if (firstViewX == 0f) 1 - x / (parentWidth / 2)
+                else 2 - 2 * x / parentWidth
+
+        text.alpha = alpha
     }
 
     private fun resetText() {
