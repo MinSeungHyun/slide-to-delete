@@ -70,8 +70,8 @@ class SlideToDeleteTouchListener(private val container: ViewGroup, private val c
 
         if (!isSlidedToRight) x *= -1
         val alpha =
-                if (firstViewX == 0f) 1 - x / (parentWidth / 2)
-                else 2 - 2 * x / parentWidth
+            if (firstViewX == 0f) 1 - x / (parentWidth / 2)
+            else 2 - 2 * x / parentWidth
 
         content.alpha = alpha
     }
@@ -102,4 +102,8 @@ class SlideToDeleteTouchListener(private val container: ViewGroup, private val c
         private const val FLAG_SLIDE_TO_RIGHT = 1
         private const val FLAG_SLIDE_TO_LEFT = 2
     }
+}
+
+fun View.enableSlideToDelete(container: ViewGroup, content: View) {
+    this.setOnTouchListener(SlideToDeleteTouchListener(container, content))
 }
