@@ -2,6 +2,7 @@ package com.seunghyun.dragtodelete
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.seunghyun.slidetodelete.SlideToDeleteTouchListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.seunghyun.dragtodelete
+package com.seunghyun.slidetodelete
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
