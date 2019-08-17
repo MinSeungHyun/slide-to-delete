@@ -1,5 +1,4 @@
 # SlideToDelete
-![](https://img.shields.io/github/release/MinSeungHyun/SlideToDelete?color=red)
 ![](https://img.shields.io/github/release-date/MinSeungHyun/SlideToDelete?color=orange)
 ![](https://img.shields.io/github/last-commit/MinSeungHyun/SlideToDelete?color=yellow)
 [![](https://jitpack.io/v/MinSeungHyun/SlideToDelete.svg)](https://jitpack.io/#MinSeungHyun/SlideToDelete)
@@ -20,7 +19,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.1'
+	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.2'
 }
 ```
 2. In your xml (Attributes and Views are not important)
