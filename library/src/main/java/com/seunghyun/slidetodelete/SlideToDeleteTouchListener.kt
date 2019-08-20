@@ -118,6 +118,7 @@ private class SlideToDeleteTouchListener(
     private fun requestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
         val scrollableView = when {
             container.parent is RecyclerView -> container.parent as RecyclerView
+            container.parent is ScrollView -> container.parent as ScrollView
             container.parent.parent is ScrollView -> container.parent.parent as ScrollView
             else -> return
         }
