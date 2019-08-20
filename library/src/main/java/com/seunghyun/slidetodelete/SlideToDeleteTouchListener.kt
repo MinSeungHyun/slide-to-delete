@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.abs
 
 private class SlideToDeleteTouchListener(
     private val container: ViewGroup,
@@ -18,6 +19,7 @@ private class SlideToDeleteTouchListener(
 ) : View.OnTouchListener {
 
     private var firstX = 0f
+    private var firstY = 0f
     private var firstViewX = 0f
     private var velocity = 0f
     private var isSlidedToRight = false
@@ -26,20 +28,30 @@ private class SlideToDeleteTouchListener(
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         val x = event.x
+        val y = event.y
         val parentWidth = container.width.toFloat()
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                requestDisallowInterceptTouchEvent(true)
                 firstX = x
+                firstY = y
                 firstViewX = content.x
             }
             MotionEvent.ACTION_MOVE -> {
                 if (firstViewX != 0f && firstViewX != parentWidth && firstViewX != parentWidth * -1) return true
-                val distance = x - firstX
-                var viewX = firstViewX + distance
+                val distanceX = x - firstX
+                val distanceY = y - firstY
+                var viewX = firstViewX + distanceX
 
-                isSlidedToRight = (distance > 0 || viewX > 0) && firstViewX >= 0
+                if (abs(distanceY) > abs(distanceX) && abs(distanceX) < parentWidth / 20) {
+                    //Vertical scrolling
+                    requestDisallowInterceptTouchEvent(false)
+                    resetView()
+                } else {
+                    requestDisallowInterceptTouchEvent(true)
+                }
+
+                isSlidedToRight = (distanceX > 0 || viewX > 0) && firstViewX >= 0
 
                 if (viewX > parentWidth) viewX = parentWidth
 
@@ -75,6 +87,11 @@ private class SlideToDeleteTouchListener(
             }
         }
         return true
+    }
+
+    private fun resetView() {
+        autoSlide(FLAG_RESET)
+        content.alpha = 1f
     }
 
     private fun onViewMove() {
