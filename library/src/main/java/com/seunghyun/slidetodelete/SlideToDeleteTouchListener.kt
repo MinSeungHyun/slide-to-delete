@@ -7,6 +7,8 @@ import android.os.Looper
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
+import androidx.recyclerview.widget.RecyclerView
 
 private class SlideToDeleteTouchListener(
     private val container: ViewGroup,
@@ -28,6 +30,7 @@ private class SlideToDeleteTouchListener(
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                requestDisallowInterceptTouchEvent(true)
                 firstX = x
                 firstViewX = content.x
             }
@@ -46,6 +49,7 @@ private class SlideToDeleteTouchListener(
                 onViewMove()
             }
             MotionEvent.ACTION_UP -> {
+                requestDisallowInterceptTouchEvent(false)
                 var textX = content.x
                 val autoSlideVelocity = AUTO_SLIDE_VELOCITY_RATIO * parentWidth
                 val autoSlideWidth = parentWidth * AUTO_SLIDE_RATIO
@@ -109,6 +113,15 @@ private class SlideToDeleteTouchListener(
             onViewMove()
         }
         animator.start()
+    }
+
+    private fun requestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+        val scrollableView = when {
+            container.parent is RecyclerView -> container.parent as RecyclerView
+            container.parent.parent is ScrollView -> container.parent.parent as ScrollView
+            else -> return
+        }
+        scrollableView.requestDisallowInterceptTouchEvent(disallowIntercept)
     }
 
     class WaitingThread(
