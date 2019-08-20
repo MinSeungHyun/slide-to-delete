@@ -19,7 +19,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.2'
+	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.3'
 }
 ```
 2. In your xml (Attributes and Views are not important)
