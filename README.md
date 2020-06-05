@@ -12,13 +12,13 @@
 1. Add this in your `build.gradle (app)` at the end of project
 ```gradle
 allprojects {
-	repositories {
-		maven { url 'https://jitpack.io' }
-	}
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 dependencies {
-	implementation 'com.github.MinSeungHyun:SlideToDelete:v1.5'
+    implementation 'com.github.MinSeungHyun:SlideToDelete:v1.5'
 }
 ```
 2. In your xml (Attributes and Views are not important)
