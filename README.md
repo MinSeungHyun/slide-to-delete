@@ -4,8 +4,7 @@
 [![](https://jitpack.io/v/MinSeungHyun/SlideToDelete.svg)](https://jitpack.io/#MinSeungHyun/SlideToDelete)
 [![](https://img.shields.io/github/license/MinSeungHyun/SlideToDelete?color=blue)](https://github.com/MinSeungHyun/SlideToDelete/blob/master/LICENSE)
 <br>
-*Not a RecyclerView, Just a View*<br>
-*But it can also be used in RecyclerVIew*<br>
+**Make simple slidable view with delete function**
 
 <img src="gifs/preview.gif" width="250"/>
 
